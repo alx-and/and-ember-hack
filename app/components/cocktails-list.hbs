@@ -1,7 +1,21 @@
-<div class='container'>
-  <h1>
-    {{#each this.cocktailData.allAlcoholicDrinks as |cocktail|}}
-      <Card @cocktail={{cocktail}}/>
-    {{/each}}
-  </h1>
-</div>
+
+<main>
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {{#each this.cocktailData.allAlcoholicDrinks as |cocktail index|}}
+        <div class="col">
+          <Card @cocktail={{cocktail}}/>
+        </div>
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+</main>
+
+
+
+
+
