@@ -1,8 +1,8 @@
 <div class="card flip-card">
   <div class="flip-card-inner">
-    
+
     <div class="flip-card-front">
-      <img src={{@cocktail.imagePath}} alt="" style="width:300px; height:300px;">
+      <img class="card-front-image" src={{@cocktail.imagePath}} alt="{{@cocktail.name}}">
     </div>
 
     <div class="flip-card-back bg-light">
@@ -10,13 +10,7 @@
       <div class="card-body">
         <p class="card-text"> Name: {{@cocktail.name}} </p>
         <p class="card-text"> Glass: {{@cocktail.glass}}</p>
-        <p class="card-text"> Instructions: {{@cocktail.instructions}}</p>
-        <p class="card-text"> {{#each @cocktail.ingredients as |ingredient|}}
-          <ul>
-            <li> {{ingredient.measure}} {{ingredient.ingredient}}</li>
-          </ul>
-        
-        {{/each}}</p>
+        <p class="card-text card-instructions"> Instructions: {{@cocktail.instructions}}</p>
       </div>
     </div>
 

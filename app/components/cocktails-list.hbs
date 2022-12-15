@@ -4,7 +4,7 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {{#each this.cocktailData.allAlcoholicDrinks as |cocktail index|}}
+        {{#each this.cocktailData.allAlcoholicDrinks as |cocktail|}}
         <div class="col">
           <Card @cocktail={{cocktail}}/>
         </div>
