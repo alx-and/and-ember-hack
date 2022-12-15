@@ -10,5 +10,11 @@ export default class IndexRoute extends Route {
 
     console.log({ alcoholOptions });
     console.log({ nonAlcoholOptions });
+
+    return {
+      get allAlcoholicDrinks() {
+        return alcoholOptions;
+      },
+    };
   }
 }
