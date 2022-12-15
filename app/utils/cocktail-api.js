@@ -4,7 +4,7 @@ export default class extends EmberObject {
   static baseUrl = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
   static async fetchData(endpoint) {
-    const data = await fetch(`${this.baseUrl}/${endpoint}`);
+    const data = await fetch(`${this.baseUrl}${endpoint}`);
     const res = await data.json();
     return res;
   }

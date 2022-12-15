@@ -1,10 +1,10 @@
-import randomNumber from 'and-ember-hack/utils/random-number';
+import pickProperties from 'and-ember-hack/utils/pick-properties';
 import { module, test } from 'qunit';
 
-module('Unit | Utility | random-number', function () {
+module('Unit | Utility | pick-properties', function () {
   // TODO: Replace this with your real tests.
   test('it works', function (assert) {
-    let result = randomNumber;
+    let result = pickProperties;
     assert.ok(result);
   });
 });

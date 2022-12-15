@@ -1,35 +1,29 @@
 import Service from '@ember/service';
 import cocktailApiUtil from '../utils/cocktail-api';
-import randomNumberUtil from '../utils/random-number';
+import pickPropertiesUtil from '../utils/pick-properties';
 
 export default class CocktailDataService extends Service {
   alcoholicOptions = null;
   nonAlcoholicOptions = null;
 
-  async getRandomDrinkOptions(drinkOptions) {
-    const amountOfOptions = drinkOptions.length;
+  async getDrinkOptions(drinkData) {
+    const options = drinkData.slice(0, 11);
 
-    const randomDrinkOptions = await Array(12)
-      .fill(null)
-      .reduce(async (acc) => {
-        const randomNumber = randomNumberUtil.getRandomNumber(amountOfOptions);
-        const randomDrink = drinkOptions[randomNumber - 1];
+    const drinkOptions = await options.reduce(async (acc, item) => {
+      const drinkInfo = await cocktailApiUtil.getCocktailById(item.idDrink);
+      const pickedProperties = pickPropertiesUtil.pickProperties(drinkInfo);
 
-        const drinkInfo = await cocktailApiUtil.getCocktailById(
-          randomDrink.idDrink
-        );
+      (await acc).push(pickedProperties);
+      return acc;
+    }, []);
 
-        (await acc).push(drinkInfo);
-        return acc;
-      }, []);
-
-    return await randomDrinkOptions;
+    return await drinkOptions;
   }
 
   async getAlcoholicOptions() {
     if (!this.alcoholicOptions) {
       const allOptions = await cocktailApiUtil.getAllAlcoholicCocktails();
-      const randomDrinkOptions = await this.getRandomDrinkOptions(allOptions);
+      const randomDrinkOptions = await this.getDrinkOptions(allOptions);
 
       this.alcoholicOptions = randomDrinkOptions;
     }
@@ -39,7 +33,7 @@ export default class CocktailDataService extends Service {
   async getNonAlcoholicOptions() {
     if (!this.nonAlcoholicOptions) {
       const allOptions = await cocktailApiUtil.getAllNonAlcoholicCocktails();
-      const randomDrinkOptions = await this.getRandomDrinkOptions(allOptions);
+      const randomDrinkOptions = await this.getDrinkOptions(allOptions);
 
       this.nonAlcoholicOptions = randomDrinkOptions;
     }
