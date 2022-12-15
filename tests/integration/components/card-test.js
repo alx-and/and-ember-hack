@@ -13,6 +13,5 @@ module('Integration | Component | card', function (hooks) {
     await render(hbs`<Card />`);
 
     assert.dom(this.element).containsText('Name: ');
-
   });
 });
