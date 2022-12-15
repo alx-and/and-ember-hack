@@ -1,21 +1,22 @@
-
 <main>
-  <div class="album py-5">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {{#each this.cocktailData.allAlcoholicDrinks as |cocktail index|}}
-        <div class="col">
-          <Card @cocktail={{cocktail}}/>
-        </div>
-        {{/each}}
+  <div class='album py-5'>
+    <div class='container'>
+      <div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
+        {{#if @isAlcoholic}}
+          {{#each this.cocktailData.allAlcoholicDrinks as |cocktail index|}}
+            <div class='col'>
+              <Card @cocktail={{cocktail}} />
+            </div>
+          {{/each}}
+        {{else}}
+          {{#each this.cocktailData.allNonDrinks as |cocktail index|}}
+            <div class='col'>
+              <Card @cocktail={{cocktail}} />
+            </div>
+          {{/each}}
+        {{/if}}
       </div>
 
     </div>
   </div>
 </main>
-
-
-
-
-
