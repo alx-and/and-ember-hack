@@ -54,4 +54,8 @@ export default class CocktailDataService extends Service {
   get allAlcoholicDrinks() {
     return this.alcoholicOptions;
   }
+
+  get allNonDrinks() {
+    return this.nonAlcoholicOptions;
+  }
 }
