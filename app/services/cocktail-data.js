@@ -9,10 +9,10 @@ export default class CocktailDataService extends Service {
   async getDrinkOptions(drinkData) {
     const options = drinkData.slice(12, 24);
 
-    const drinkOptions = await options.reduce(async (acc, item) => {
+    const drinkOptions = await options.reduce(async (acc, item, index) => {
       const drinkInfo = await cocktailApiUtil.getCocktailById(item.idDrink);
       const pickedProperties = pickPropertiesUtil.pickProperties(drinkInfo);
-
+      pickedProperties.imagePath = `images/door-${index + 1}.png`;
       (await acc).push(pickedProperties);
       return acc;
     }, []);
