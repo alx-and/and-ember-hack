@@ -7,7 +7,7 @@ export default class CocktailDataService extends Service {
   nonAlcoholicOptions = null;
 
   async getDrinkOptions(drinkData) {
-    const options = drinkData.slice(0, 11);
+    const options = drinkData.slice(12, 24);
 
     const drinkOptions = await options.reduce(async (acc, item) => {
       const drinkInfo = await cocktailApiUtil.getCocktailById(item.idDrink);
